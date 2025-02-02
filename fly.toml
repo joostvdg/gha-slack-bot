@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for gha-slack-bot on 2025-02-02T17:13:37+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'gha-slack-bot'
+primary_region = 'ams'
+
+[build]
+  [build.args]
+    GO_VERSION = '1.23.5'
+
+[env]
+  PORT = '8080'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'suspend'
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
